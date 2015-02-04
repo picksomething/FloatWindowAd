@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/big_window_layout"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:orientation="vertical"
-    >
+    android:id="@+id/big_window_layout"
+    android:layout_width="60dp"
+    android:layout_height="60dp"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/floatFunctionAdText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:text="@string/float_function_ad_text"/>
+        android:text="@string/float_function_ad_text" />
 </RelativeLayout>
