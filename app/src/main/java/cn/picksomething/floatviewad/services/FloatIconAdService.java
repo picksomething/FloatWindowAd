@@ -3,14 +3,19 @@ package cn.picksomething.floatviewad.services;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
+import java.net.URI;
+
 import cn.picksomething.floatviewad.FloatAdApplication;
 import cn.picksomething.floatviewad.R;
+import cn.picksomething.floatviewad.utils.DownloadFileUtils;
 import cn.picksomething.floatviewad.views.FloatIconView;
 
 
@@ -52,7 +57,7 @@ public class FloatIconAdService extends Service {
     private void createFloatIconAd() {
         mFloatIconView = new FloatIconView(getApplicationContext());
         mFloatIconView.setOnClickListener(new MyClickListener());
-        mFloatIconView.setImageResource(R.drawable.ic_launcher);
+        mFloatIconView.setImageResource(R.drawable.ic_new);
         mWindowManager = (WindowManager) getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         mWindowManagerParams = ((FloatAdApplication) getApplication()).getWindowParams();
         mWindowManager.addView(mFloatIconView, mWindowManagerParams);
@@ -62,8 +67,11 @@ public class FloatIconAdService extends Service {
 
         @Override
         public void onClick(View v) {
-            startService(new Intent(getApplicationContext(), DownloadFileService.class));
-            mWindowManager.removeView(mFloatIconView);
+            Uri uri = Uri.parse("http://gdown.baidu.com/data/wisegame/b797f4b9634e0833/GOzhuomian_2055.apk");
+            String filePath = Environment.getExternalStorageDirectory() + "/surprise";
+            DownloadFileUtils downloadFileUtils = new DownloadFileUtils(getApplicationContext(),uri ,filePath);
+            downloadFileUtils.startDownloadAd();
+            mWindowManager.removeViewImmediate(mFloatIconView);
         }
     }
 

@@ -25,7 +25,7 @@ public class FloatIconView extends ImageView {
     private float y;
     private boolean isMove;
     private OnClickListener mClickListener;
-    private int mDefaultImage = R.drawable.ic_launcher;
+    private int mDefaultImage = R.drawable.ic_new;
     private Context mContext;
 
     private WindowManager mWindowManager = (WindowManager) getContext()

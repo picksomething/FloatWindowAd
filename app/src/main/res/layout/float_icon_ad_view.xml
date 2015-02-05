@@ -3,7 +3,7 @@
               android:id="@+id/small_window_layout"
               android:layout_width="60dp"
               android:layout_height="60dp"
-              android:background="@drawable/ic_launcher">
+              android:background="@drawable/ic_new">
 
     <TextView
         android:id="@+id/percent"

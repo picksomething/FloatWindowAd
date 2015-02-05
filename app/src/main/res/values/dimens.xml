@@ -2,6 +2,6 @@
 <resources>
     <dimen name="float_icon_height">40dp</dimen>
     <dimen name="float_icon_width">40dp</dimen>
-    <dimen name="float_list_height">480dp</dimen>
-    <dimen name="float_list_width">320dp</dimen>
+    <dimen name="float_list_height">400dp</dimen>
+    <dimen name="float_list_width">240dp</dimen>
 </resources>
