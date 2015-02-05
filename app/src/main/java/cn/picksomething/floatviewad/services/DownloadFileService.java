@@ -23,7 +23,9 @@ import cn.picksomething.floatviewad.utils.DownloadFileUtils;
 /**
  * Created by caobin on 15/2/5.
  */
-public class DownloadFileService extends Service{
+public class DownloadFileService extends Service {
+
+    private static final String TAG = "DownloadFileService";
 
     private DownloadFileUtils downloadFileUtils;
     private String filePath;
@@ -34,9 +36,9 @@ public class DownloadFileService extends Service{
     private final int updateProgress = 1;
     private final int downloadSuccess = 2;
     private final int downloadError = 3;
-    private final String TAG = "DownloadFileService";
     private Timer timer;
     private TimerTask task;
+
     @Override
     public IBinder onBind(Intent intent) {
 
@@ -45,12 +47,12 @@ public class DownloadFileService extends Service{
 
     @Override
     public void onCreate() {
-        Log.d("caobin","onCreate in DownloadFileService");
+        Log.d(TAG, "onCreate in DownloadFileService");
         init();
     }
 
-    private void init(){
-        Log.d("caobin","init in DownloadFileService");
+    private void init() {
+        Log.d(TAG, "init in DownloadFileService");
         filePath = Environment.getExternalStorageDirectory() + "/surprise";
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         notification = new Notification();
@@ -70,12 +72,12 @@ public class DownloadFileService extends Service{
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("caobin","onStartCommand in DownloadFileService");
+        Log.d(TAG, "onStartCommand in DownloadFileService");
         new Thread(new Runnable() {
 
             @Override
             public void run() {
-                downloadFileUtils = new DownloadFileUtils("http://gdown.baidu.com/data/wisegame/b797f4b9634e0833/GOzhuomian_2055.apk", filePath, "GOzhuomian_2055.apk", 3,callback);
+                downloadFileUtils = new DownloadFileUtils("http://gdown.baidu.com/data/wisegame/b797f4b9634e0833/GOzhuomian_2055.apk", filePath, "GOzhuomian_2055.apk", 3, callback);
                 downloadFileUtils.downloadFile();
             }
         }).start();
@@ -84,28 +86,26 @@ public class DownloadFileService extends Service{
     }
 
 
-
     @Override
     public void onDestroy() {
-        Log.i(TAG, TAG + " is onDestory...");
+        Log.d(TAG, " onDestroy");
         super.onDestroy();
     }
 
 
-
-    Handler handler = new Handler(){
+    Handler handler = new Handler() {
 
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == updateProgress) {
                 long fileSize = downloadFileUtils.getFileSize();
                 long totalReadSize = downloadFileUtils.getTotalReadSize();
-                if(totalReadSize > 0){
+                if (totalReadSize > 0) {
                     float size = (float) totalReadSize * 100 / (float) fileSize;
                     DecimalFormat format = new DecimalFormat("0.00");
                     String progress = format.format(size);
-                    remoteViews.setTextViewText(R.id.progressTv, "已下载" + progress+ "%");
-                    remoteViews.setProgressBar(R.id.progressBar, 100, (int) size,false);
+                    remoteViews.setTextViewText(R.id.progressTv, "已下载" + progress + "%");
+                    remoteViews.setProgressBar(R.id.progressBar, 100, (int) size, false);
                     notification.contentView = remoteViews;
                     notificationManager.notify(notificationID, notification);
                 }
@@ -114,22 +114,22 @@ public class DownloadFileService extends Service{
                 remoteViews.setProgressBar(R.id.progressBar, 100, 100, false);
                 notification.contentView = remoteViews;
                 notificationManager.notify(notificationID, notification);
-                if(timer != null && task != null){
+                if (timer != null && task != null) {
                     timer.cancel();
                     task.cancel();
                     timer = null;
                     task = null;
                 }
-                stopService(new Intent(getApplicationContext(),DownloadFileService.class));//stop service
+                stopService(new Intent(getApplicationContext(), DownloadFileService.class));//stop service
             } else if (msg.what == downloadError) {
-                if(timer != null && task != null){
+                if (timer != null && task != null) {
                     timer.cancel();
                     task.cancel();
                     timer = null;
                     task = null;
                 }
                 notificationManager.cancel(notificationID);
-                stopService(new Intent(getApplicationContext(),DownloadFileService.class));//stop service
+                stopService(new Intent(getApplicationContext(), DownloadFileService.class));//stop service
             }
         }
 

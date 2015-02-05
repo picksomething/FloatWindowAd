@@ -7,5 +7,6 @@
     <string name="start_icon_service">启动FloatIconAd</string>
     <string name="start_function_service">启动FloatFunctionAd</string>
     <string name="float_function_ad_text">惊喜点击</string>
+    <string name="float_ad_title">惊喜点击</string>
 
 </resources>

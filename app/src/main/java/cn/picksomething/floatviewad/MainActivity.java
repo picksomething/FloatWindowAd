@@ -13,6 +13,7 @@ import cn.picksomething.floatviewad.services.FloatIconAdService;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
+    private static final String TAG = "MainActivity";
     public Intent intent;
     private Button mStartIconService;
     private Button mStartFunctionService;
@@ -36,17 +37,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.startIconService:
+                Log.d(TAG, "FloatIconAdService");
                 intent.setClass(MainActivity.this, FloatIconAdService.class);
                 startService(intent);
                 break;
             case R.id.startFuctionService:
+                Log.d(TAG, "FloatFunctionAdService");
                 intent.setClass(MainActivity.this, FloatFunctionAdService.class);
                 startService(intent);
                 break;
             default:
                 break;
         }
-        Log.d("caobin","startService");
         finish();
     }
 }
