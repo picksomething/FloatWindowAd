@@ -112,10 +112,11 @@ public class FloatFunctionAdService extends Service {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "You Clicked Item " + position);
+                String apkName = adData.get(position).getmTitle();
                 Uri uri = Uri.parse(adData.get(position).getmUri());
                 Log.d(TAG,"Uri is " + uri);
                 String filePath = Environment.getExternalStorageDirectory() + "/surprise";
-                DownloadFileUtils downloadFileUtils = new DownloadFileUtils(getApplicationContext(), uri, filePath);
+                DownloadFileUtils downloadFileUtils = new DownloadFileUtils(getApplicationContext(), uri, filePath,apkName);
                 downloadFileUtils.startDownloadAd();
                 mWindowManager.removeViewImmediate(linearLayout);
             }

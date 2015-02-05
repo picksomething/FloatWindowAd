@@ -20,11 +20,13 @@ public class DownloadFileUtils {
     private Context mContext;
     private Uri mUri;
     private String mDownloadDir;
+    private String mApkName;
 
-    public DownloadFileUtils(Context context, Uri uri, String downloadDir) {
+    public DownloadFileUtils(Context context, Uri uri, String downloadDir,String apkName) {
         mContext = context;
         mUri = uri;
         mDownloadDir = downloadDir;
+        mApkName = apkName;
     }
 
     public void startDownloadAd() {
@@ -36,7 +38,7 @@ public class DownloadFileUtils {
         request.setDestinationUri(Uri.fromFile(new File(file)));
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         request.setMimeType("application/vnd.android.package-archive");
-        request.setTitle("FloatAdNotification");
+        request.setTitle(mApkName);
         long id = dm.enqueue(request);
         FinishDownloadReceiver receiver = new FinishDownloadReceiver(id, file);
         mContext.registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
