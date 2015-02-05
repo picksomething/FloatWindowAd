@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <string-array name="appNames">
+        <item>蜻蜓FM</item>
+        <item>挖财宝</item>
+        <item>WIFI信号增强</item>
+        <item>Go桌面</item>
+        <item>运动客</item>
+        <item>猪八戒</item>
+        <item>直播吧</item>
+        <item>作业帮</item>
+        <item>校园搜题</item>
+        <item>QQ阅读</item>
+    </string-array>
+
+    <string-array name="appUris">
+        <item>http://gdown.baidu.com/data/wisegame/0f279167a65e9389/qingtingFM_471.apk</item>
+        <item>http://gdown.baidu.com/data/wisegame/53bb3d7279668c06/wacaibao_106.apk</item>
+        <item>http://gdown.baidu.com/data/wisegame/f9701e8a07f5258e/WiFixinhaozengqiangqi_111.apk</item>
+        <item>http://gdown.baidu.com/data/wisegame/b797f4b9634e0833/GOzhuomian_2055.apk</item>
+        <item>http://gdown.baidu.com/data/wisegame/1b54a89cd0a4fcaa/yundongke_10.apk</item>
+        <item>http://gdown.baidu.com/data/wisegame/fbdf17b71cd11822/zhubajie_102.apk</item>
+        <item>http://gdown.baidu.com/data/wisegame/c8858d5a6567075a/zhiboba_46.apk</item>
+        <item>http://gdown.baidu.com/data/wisegame/79258f17666c5a02/zuoyebang_46.apk</item>
+        <item>http://gdown.baidu.com/data/wisegame/bd0dfed6b0068590/xiaoyuansouti_1070099.apk</item>
+        <item>http://gdown.baidu.com/data/wisegame/09642fc8b6787354/QQyuedu_66.apk</item>
+    </string-array>
+</resources>

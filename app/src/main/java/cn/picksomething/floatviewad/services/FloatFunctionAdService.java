@@ -3,6 +3,7 @@ package cn.picksomething.floatviewad.services;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
@@ -38,11 +39,14 @@ public class FloatFunctionAdService extends Service {
     private MyAdapter mMyAdapter = null;
     private Handler mHandler = null;
     ArrayList<AdItem> adData = null;
-    int[] imagesId = new int[]{R.drawable.ic_new,
-            R.drawable.ic_new, R.drawable.ic_new,
-            R.drawable.ic_new, R.drawable.ic_new, R.drawable.ic_new,
-            R.drawable.ic_new, R.drawable.ic_new,
-            R.drawable.ic_new, R.drawable.ic_new};
+    Resources resources = null;
+    String[] appName = null;
+    String[] appUri = null;
+    int[] imagesId = new int[]{R.drawable.qingtingfm,
+            R.drawable.wacaibao, R.drawable.wifixinhaozengqiang,
+            R.drawable.gozhuomian, R.drawable.yundongke, R.drawable.zhubajie,
+            R.drawable.zhiboba, R.drawable.zuoyebang,
+            R.drawable.xiaoyuansouti, R.drawable.qqyuedu};
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -63,11 +67,14 @@ public class FloatFunctionAdService extends Service {
     }
 
     private void initDatas() {
+        resources = getApplicationContext().getResources();
+        appUri = resources.getStringArray(R.array.appUris);
+        appName = resources.getStringArray(R.array.appNames);
         mHandler = new Handler();
-        adData = new ArrayList<AdItem>();
+        adData = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            AdItem adItem = new AdItem(imagesId[i], " huhula Ad " + i,
-                    "This is text " + i);
+            AdItem adItem = new AdItem(imagesId[i], appName[i],
+                    appUri[i]);
             adData.add(adItem);
         }
         mMyAdapter = new MyAdapter(getApplicationContext(), R.layout.ad_item, adData);
@@ -104,10 +111,11 @@ public class FloatFunctionAdService extends Service {
         listViewAd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("TAG", "You Clicked Item " + (position + 1));
-                Uri uri = Uri.parse("http://gdown.baidu.com/data/wisegame/b797f4b9634e0833/GOzhuomian_2055.apk");
+                Log.d(TAG, "You Clicked Item " + position);
+                Uri uri = Uri.parse(adData.get(position).getmUri());
+                Log.d(TAG,"Uri is " + uri);
                 String filePath = Environment.getExternalStorageDirectory() + "/surprise";
-                DownloadFileUtils downloadFileUtils = new DownloadFileUtils(getApplicationContext(),uri ,filePath);
+                DownloadFileUtils downloadFileUtils = new DownloadFileUtils(getApplicationContext(), uri, filePath);
                 downloadFileUtils.startDownloadAd();
                 mWindowManager.removeViewImmediate(linearLayout);
             }

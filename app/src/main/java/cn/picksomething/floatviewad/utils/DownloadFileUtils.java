@@ -30,7 +30,8 @@ public class DownloadFileUtils {
     public void startDownloadAd() {
         DownloadManager dm = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
         DownloadManager.Request request = new DownloadManager.Request(mUri);
-        String file = mDownloadDir + "/" + "Gozhuomian.apk";
+        String appName = splitUri(mUri);
+        String file = mDownloadDir + "/" + appName;
         Log.d(TAG, "filePath = " + file);
         request.setDestinationUri(Uri.fromFile(new File(file)));
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
@@ -39,6 +40,12 @@ public class DownloadFileUtils {
         long id = dm.enqueue(request);
         FinishDownloadReceiver receiver = new FinishDownloadReceiver(id, file);
         mContext.registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+    }
+
+    private String splitUri(Uri mUri) {
+        String[] strArray = mUri.toString().split("/");
+        Log.d(TAG, "appName is " + strArray[strArray.length - 1]);
+        return strArray[strArray.length - 1];
     }
 
 }

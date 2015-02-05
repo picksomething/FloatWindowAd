@@ -63,13 +63,6 @@ public class MyAdapter extends BaseAdapter {
         viewHolder.mImageView.setImageResource(mAdItem.get(position).getmImageId());
         viewHolder.mTitle.setText(mAdItem.get(position).getmTitle());
 
-        switch (position % 2) {
-            case 0:
-                convertView.setBackgroundColor(mContext.getResources().getColor(R.color.blue));
-                break;
-            case 1:
-                convertView.setBackgroundColor(mContext.getResources().getColor(R.color.white));
-        }
         return convertView;
     }
 
