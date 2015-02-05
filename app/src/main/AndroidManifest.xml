@@ -23,7 +23,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <service android:name=".services.FloatViewService"></service>
+        <service android:name=".services.FloatIconAdService"></service>
+        <service android:name=".services.FloatFunctionAdService"></service>
         <service android:name=".services.DownloadFileService"></service>
     </application>
 

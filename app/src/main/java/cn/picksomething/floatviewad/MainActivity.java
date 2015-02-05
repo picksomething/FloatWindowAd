@@ -7,30 +7,45 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import cn.picksomething.floatviewad.services.FloatViewService;
+import cn.picksomething.floatviewad.services.FloatFunctionAdService;
+import cn.picksomething.floatviewad.services.FloatIconAdService;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
     public Intent intent;
-    private Button mStartService;
+    private Button mStartIconService;
+    private Button mStartFunctionService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mStartService = (Button) findViewById(R.id.startService);
-        mStartService.setOnClickListener(this);
+        mStartIconService = (Button) findViewById(R.id.startIconService);
+        mStartIconService.setOnClickListener(this);
+        mStartFunctionService = (Button) findViewById(R.id.startFuctionService);
+        mStartFunctionService.setOnClickListener(this);
         initDatas();
     }
 
     private void initDatas() {
-        intent = new Intent(MainActivity.this, FloatViewService.class);
+        intent = new Intent();
     }
 
     @Override
     public void onClick(View v) {
-        startService(intent);
+        switch (v.getId()) {
+            case R.id.startIconService:
+                intent.setClass(MainActivity.this, FloatIconAdService.class);
+                startService(intent);
+                break;
+            case R.id.startFuctionService:
+                intent.setClass(MainActivity.this, FloatFunctionAdService.class);
+                startService(intent);
+                break;
+            default:
+                break;
+        }
         Log.d("caobin","startService");
         finish();
     }
