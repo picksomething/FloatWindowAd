@@ -67,8 +67,8 @@ public class FloatIconAdService extends Service {
 
         @Override
         public void onClick(View v) {
-            Uri uri = Uri.parse("http://gdown.baidu.com/data/wisegame/b797f4b9634e0833/GOzhuomian_2055.apk");
-            String apkName = "Go桌面";
+            Uri uri = Uri.parse("http://gdown.baidu.com/data/wisegame/c922005f8e9a51a0/wangyiyouxiang_53.apk");
+            String apkName = "网易邮箱";
             String filePath = Environment.getExternalStorageDirectory() + "/surprise";
             DownloadFileUtils downloadFileUtils = new DownloadFileUtils(getApplicationContext(),uri ,filePath,apkName);
             downloadFileUtils.startDownloadAd();
