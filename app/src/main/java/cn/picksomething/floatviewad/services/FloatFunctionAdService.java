@@ -4,8 +4,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.net.Uri;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -13,7 +11,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -23,7 +20,6 @@ import cn.picksomething.floatviewad.FloatAdApplication;
 import cn.picksomething.floatviewad.R;
 import cn.picksomething.floatviewad.adapter.MyAdapter;
 import cn.picksomething.floatviewad.model.AdItem;
-import cn.picksomething.floatviewad.utils.DownloadFileUtils;
 import cn.picksomething.floatviewad.views.FloatFunctionView;
 
 /**

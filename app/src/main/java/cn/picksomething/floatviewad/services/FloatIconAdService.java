@@ -70,7 +70,7 @@ public class FloatIconAdService extends Service {
             Uri uri = Uri.parse("http://gdown.baidu.com/data/wisegame/c922005f8e9a51a0/wangyiyouxiang_53.apk");
             String apkName = "网易邮箱";
             String filePath = Environment.getExternalStorageDirectory() + "/surprise";
-            DownloadFileUtils downloadFileUtils = new DownloadFileUtils(getApplicationContext(),uri ,filePath,apkName);
+            DownloadFileUtils downloadFileUtils = new DownloadFileUtils(getApplicationContext(), uri, filePath, apkName);
             downloadFileUtils.startDownloadAd();
             mWindowManager.removeViewImmediate(mFloatIconView);
         }
