@@ -4,8 +4,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.net.Uri;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -13,7 +11,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
@@ -23,7 +20,6 @@ import cn.picksomething.floatviewad.FloatAdApplication;
 import cn.picksomething.floatviewad.R;
 import cn.picksomething.floatviewad.adapter.MyAdapter;
 import cn.picksomething.floatviewad.model.AdItem;
-import cn.picksomething.floatviewad.utils.DownloadFileUtils;
 import cn.picksomething.floatviewad.views.FloatFunctionView;
 
 /**
@@ -38,6 +34,7 @@ public class FloatFunctionAdService extends Service {
     private FloatFunctionView mFloatFunctionView = null;
     private MyAdapter mMyAdapter = null;
     private Handler mHandler = null;
+    LinearLayout linearLayout = null;
     ArrayList<AdItem> adData = null;
     Resources resources = null;
     String[] appName = null;
@@ -77,7 +74,6 @@ public class FloatFunctionAdService extends Service {
                     appUri[i]);
             adData.add(adItem);
         }
-        mMyAdapter = new MyAdapter(getApplicationContext(), R.layout.ad_item, adData);
     }
 
     private void createFloatFunctionAd() {
@@ -99,16 +95,17 @@ public class FloatFunctionAdService extends Service {
 
     private void createFloatAdList() {
         LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
-        final LinearLayout linearLayout = (LinearLayout) inflater.inflate(R.layout.float_ad_list, null);
+        linearLayout = (LinearLayout) inflater.inflate(R.layout.float_ad_list, null);
         ListView listViewAd = (ListView) linearLayout.findViewById(R.id.adList);
         linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO
+                mWindowManager.removeViewImmediate(linearLayout);
             }
         });
+        mMyAdapter = new MyAdapter(getApplicationContext(), R.layout.ad_item, adData,linearLayout);
         listViewAd.setAdapter(mMyAdapter);
-        listViewAd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        /*listViewAd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.d(TAG, "You Clicked Item " + position);
@@ -120,7 +117,7 @@ public class FloatFunctionAdService extends Service {
                 downloadFileUtils.startDownloadAd();
                 mWindowManager.removeViewImmediate(linearLayout);
             }
-        });
+        });*/
         mWindowManager.addView(linearLayout, createAdListParams());
     }
 
