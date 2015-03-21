@@ -4,6 +4,7 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.IntentFilter;
 import android.net.Uri;
+import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
@@ -17,15 +18,17 @@ public class DownloadFileUtils {
 
     private static final String TAG = "DownloadFileUtils";
 
+
     private Context mContext;
     private Uri mUri;
     private String mDownloadDir;
     private String mApkName;
 
-    public DownloadFileUtils(Context context, Uri uri, String downloadDir,String apkName) {
+    public DownloadFileUtils(Context context, Uri uri, String apkName) {
         mContext = context;
         mUri = uri;
-        mDownloadDir = downloadDir;
+        mDownloadDir = Environment.getExternalStorageDirectory().getAbsolutePath();
+        Log.d("caobin","file dir is " + mDownloadDir);
         mApkName = apkName;
     }
 

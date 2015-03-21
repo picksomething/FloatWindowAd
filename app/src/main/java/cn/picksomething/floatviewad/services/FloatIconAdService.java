@@ -4,14 +4,11 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
-
-import java.net.URI;
 
 import cn.picksomething.floatviewad.FloatAdApplication;
 import cn.picksomething.floatviewad.R;
@@ -69,8 +66,7 @@ public class FloatIconAdService extends Service {
         public void onClick(View v) {
             Uri uri = Uri.parse("http://gdown.baidu.com/data/wisegame/c922005f8e9a51a0/wangyiyouxiang_53.apk");
             String apkName = "网易邮箱";
-            String filePath = Environment.getExternalStorageDirectory() + "/surprise";
-            DownloadFileUtils downloadFileUtils = new DownloadFileUtils(getApplicationContext(), uri, filePath, apkName);
+            DownloadFileUtils downloadFileUtils = new DownloadFileUtils(getApplicationContext(), uri, apkName);
             downloadFileUtils.startDownloadAd();
             mWindowManager.removeViewImmediate(mFloatIconView);
         }

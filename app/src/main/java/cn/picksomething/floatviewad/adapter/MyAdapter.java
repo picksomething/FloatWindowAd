@@ -2,7 +2,6 @@ package cn.picksomething.floatviewad.adapter;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,8 +76,7 @@ public class MyAdapter extends BaseAdapter {
                 String apkName = mAdItem.get(position).getmTitle();
                 Uri uri = Uri.parse(mAdItem.get(position).getmUri());
                 Log.d(TAG, "Uri is " + uri);
-                String filePath = Environment.getExternalStorageDirectory() + "/surprise";
-                DownloadFileUtils downloadFileUtils = new DownloadFileUtils(mContext, uri, filePath, apkName);
+                DownloadFileUtils downloadFileUtils = new DownloadFileUtils(mContext, uri, apkName);
                 downloadFileUtils.startDownloadAd();
                 mWindowManager.removeView(mLinearLayout);
             }

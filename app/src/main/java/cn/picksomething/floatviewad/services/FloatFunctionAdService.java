@@ -103,21 +103,8 @@ public class FloatFunctionAdService extends Service {
                 mWindowManager.removeViewImmediate(linearLayout);
             }
         });
-        mMyAdapter = new MyAdapter(getApplicationContext(), R.layout.ad_item, adData,linearLayout);
+        mMyAdapter = new MyAdapter(getApplicationContext(), R.layout.ad_item, adData, linearLayout);
         listViewAd.setAdapter(mMyAdapter);
-        /*listViewAd.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "You Clicked Item " + position);
-                String apkName = adData.get(position).getmTitle();
-                Uri uri = Uri.parse(adData.get(position).getmUri());
-                Log.d(TAG,"Uri is " + uri);
-                String filePath = Environment.getExternalStorageDirectory() + "/surprise";
-                DownloadFileUtils downloadFileUtils = new DownloadFileUtils(getApplicationContext(), uri, filePath,apkName);
-                downloadFileUtils.startDownloadAd();
-                mWindowManager.removeViewImmediate(linearLayout);
-            }
-        });*/
         mWindowManager.addView(linearLayout, createAdListParams());
     }
 
